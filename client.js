@@ -33,3 +33,8 @@ socket.on('chat message', function(user, msg) {
   window.scrollTo(0, document.body.scrollHeight);
 });
 
+socket.on('output-messages', function(data) {
+  console.log(data) 
+});
+
+
