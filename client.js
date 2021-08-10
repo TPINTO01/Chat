@@ -1,16 +1,8 @@
 var socket = io();
  
 var messages = document.getElementById('messages');
-var form = document.getElementById('form');
-var input = document.getElementById('input');
-
-function appendMsg(user, msg) {
-  var item = document.createElement('li');
-  item.textContent = user + " : " + msg;
-  messages.appendChild(item);
-  window.scrollTo(0, document.body.scrollHeight);
-}
-
+var form     = document.getElementById('form');
+var input    = document.getElementById('input');
 
 var username = prompt("What's your username?");
 if (username == null) {
@@ -22,7 +14,7 @@ socket.emit('connect status', username, "connected");
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   if (input.value) {
-    socket.emit('chat message', username, input.value);
+    socket.emit('message', username, input.value);
     input.value = '';
   }
 });
@@ -34,8 +26,7 @@ socket.on('connect status', function(user, status) {
   window.scrollTo(0, document.body.scrollHeight);
 });
 
-
-socket.on('chat message', function(user, msg) {
+socket.on('message', function(user, msg) {
   appendMsg(user, msg);
 });
 
@@ -48,4 +39,9 @@ socket.on('output-messages', function(data) {
   }
 });
 
-
+function appendMsg(user, msg) {
+  var item = document.createElement('li');
+  item.textContent = user + " : " + msg;
+  messages.appendChild(item);
+  window.scrollTo(0, document.body.scrollHeight);
+}
