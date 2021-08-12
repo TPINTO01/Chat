@@ -7,7 +7,7 @@ const io = new Server(server);
 
 const mongoose = require('mongoose');
 const Msg = require('./models/messages');
-const mongoDB = 'mongodb+srv://dbTpl:theSkrt518@cluster0.3xcg6.mongodb.net/message-database?retryWrites=true&w=majority';
+const mongoDB = 'mongodb+srv://<insertusernameandpasswordhere>@cluster0.3xcg6.mongodb.net/message-database?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, { useNewUrlParser: true,
                             useUnifiedTopology: true }).then(() => {
   console.log("connected to mongodb");
